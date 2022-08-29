@@ -34,6 +34,9 @@ session_start();
         $theUsername = htmlentities($theUsername, ENT_QUOTES, "Utf-8");
         $thePassword = htmlentities($thePassword, ENT_QUOTES, "Utf-8");
 
+        // connection to the db
+        $dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
+
     }
 
     ?>
