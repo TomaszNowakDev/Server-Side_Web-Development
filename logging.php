@@ -15,7 +15,11 @@ session_start();
 <body>
     Log in to your account. <br/><hr/>
     <?php
-
+        echo "<form action=\"logging.php\" method=\"POST\">";
+        echo "Username: <br/><input name=\"username\" type=\"text\" required \"/><br/>";
+        echo "Password: <br/><input name=\"password\" type=\"password\" required \"/><br/><hr/>";
+        echo "<input type=\"reset\" value=\"Reset\"> ";
+        echo "<input type=\"submit\" value=\"Log in\"/>";
 
     ?>
     </form>
