@@ -36,6 +36,10 @@ session_start();
 
         // connection to the db
         $dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
+        // query
+        $q = "SELECT userName, pword FROM postsauthors WHERE userName = '$theUsername' AND pword = '$thePassword';";
+        // result of the query form db
+        $r = mysqli_query($dbc, $q);
 
     }
 
