@@ -41,6 +41,22 @@ session_start();
         // result of the query form db
         $r = mysqli_query($dbc, $q);
 
+        // no rows in the db found for this query.
+        if ($r->num_rows === 0)
+        {
+            echo "<form action=\"logging.php\" method=\"POST\">";
+            echo "Username: <br/><input name=\"username\" type=\"text\" required \"/><br/>";
+            echo "Password: <br/><input name=\"password\" type=\"password\" required \"/><br/><hr/>";
+            echo "<input type=\"reset\" value=\"Reset\"/> ";
+            echo "<input type=\"submit\" value=\"Log in\"/ >";
+            echo "<span style=\"color:red\">\tLogin or password is incorrect!</span>";
+        }
+        else
+        {
+            $_SESSION['username'] = $theUsername;
+            $_SESSION['password'] = $thePassword;
+            $_SESSION['logged'] = true;
+        }
     }
 
     ?>
