@@ -40,6 +40,26 @@ else
 
 mysqli_free_result ($r);
 
+$q = 'SELECT title, postcontent, userName, date FROM posts ORDER BY date DESC;';
+
+$r = mysqli_query($dbc, $q);
+
+
+if (!($r))
+{
+    echo "Nothing came back from that query<br/> Something went wrong:" . mysqli_error($dbc) . "<br/>";
+}
+else
+{
+
+    while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
+        {
+            echo "<table><tr><th>".$row[0]." </th></tr><tr><td>".$row[1]." </td></tr><tr><td><form action=\"author.php\" method=\"POST\"><input type=\"submit\" name=\"author\" value=\"".$row[2]."\"></input></form></td></tr><tr><td>".$row[3]."</td></tr></table></br>";
+        }
+
+}
+
+
 ?>
 
 <hr/>
