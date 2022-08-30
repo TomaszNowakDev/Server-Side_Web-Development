@@ -61,6 +61,8 @@ session_start();
 
     ?>
     </form>
+    <br/>
+    <button><a href="postsPage.php">view posts</a></button><br/>
     <hr/>
 <br/>
 <br/>
