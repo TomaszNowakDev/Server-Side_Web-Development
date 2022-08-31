@@ -23,6 +23,7 @@ td {
 <br/><hr/>
 
 <?php
+
 if (!(isset($_POST['author'])))
 {
 	// the author was not selected from postspage.
@@ -78,10 +79,27 @@ else
 	$theAuthor = $_POST['author'];
 	$dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
 
-	if (mysqli_ping($dbc))
+    $q = 'SELECT userName FROM postsauthors WHERE NOT acctyp  = "admin";';
+
+	$r = mysqli_query($dbc, $q);
+
+	if (!($r))
 	{
-		echo 'MySqlServer' . mysqli_get_server_info($dbc) . ' on ' . mysqli_get_host_info($dbc) . "<br/>";
+		echo "Nothing came back from that query<br/> Something went wrong:" . mysqli_error($dbc) . "<br/>";
 	}
+	else
+	{
+		echo "<form action=\"author.php\" method=\"POST\">";
+		while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
+			{
+
+				echo "<input type=\"submit\" name=\"author\" value=\"".$row[0]."\"></input>";
+
+			}
+			echo "</form>";
+	}
+
+	mysqli_free_result ($r);
 
 	$q = "SELECT title, postcontent, userName, date FROM posts WHERE userName=\"$theAuthor\" ORDER BY date DESC;";
 
