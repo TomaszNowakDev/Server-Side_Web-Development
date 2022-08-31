@@ -29,7 +29,7 @@ if (!(isset($_POST['author'])))
 
 	$dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
 
-	$q = 'SELECT userName FROM postsauthors;';
+	$q = 'SELECT userName FROM postsauthors WHERE NOT acctyp  = "admin";';
 
 	$r = mysqli_query($dbc, $q);
 
