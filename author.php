@@ -13,7 +13,7 @@
 
 <body>
     <main><h1>Blogs</h1>
-<br/><br/>
+<br/>
         <?php
         if (!(isset($_POST['author'])))
         {
@@ -25,7 +25,7 @@
             $theAuthor = $_POST['author'];
             echo "<strong>$theAuthor</strong>";
             echo "<figure>
-                <img src=\"img/".$theAuthor.".jpg\" alt=\"".$theAuthor."\" title=\"".$theAuthor."\" width=\"500\" height=\"500\">
+                <img src=\"img/".$theAuthor.".jpg\" alt=\"".$theAuthor."\" title=\"".$theAuthor."\" width=\"450\" height=\"450\">
                 <figcaption>\"".$theAuthor."\"</figcaption>
                 </figure>";
 
