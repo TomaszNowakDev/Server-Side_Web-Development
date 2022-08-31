@@ -2,8 +2,17 @@
 <html lang = "en">
 <head>
 <meta charset="UTF-8" />
-<title>posts page</title>
+<title>Author page</title>
 <meta name="Blog of the authors of famous rock songs" content="Blogs" />
+<style>
+ h1, h3, footer {
+	    text-align: center;
+    }
+td {
+   border: 1px solid #543975;
+   padding: 5px;
+}
+</style>
 </head>
 <body>
 <h1>Blogs</h1>
