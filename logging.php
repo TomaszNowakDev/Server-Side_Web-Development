@@ -1,6 +1,11 @@
 <?php
 // Start the session
 session_start();
+if((isset($_SESSION['logged']))&&($_SESSION['logged']==true))
+{
+    header('Location: createpost.php');
+    exit();
+}
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -34,11 +39,11 @@ session_start();
         $theUsername = htmlentities($theUsername, ENT_QUOTES, "Utf-8");
         $thePassword = htmlentities($thePassword, ENT_QUOTES, "Utf-8");
 
-        // connection to the db
         $dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
-        // query
+
+
         $q = "SELECT userName, pword FROM postsauthors WHERE userName = '$theUsername' AND pword = '$thePassword';";
-        // result of the query form db
+
         $r = mysqli_query($dbc, $q);
 
         // no rows in the db found for this query.
@@ -56,19 +61,19 @@ session_start();
             $_SESSION['username'] = $theUsername;
             $_SESSION['password'] = $thePassword;
             $_SESSION['logged'] = true;
+            header('Location: createpost.php');
         }
+
+        mysqli_close($dbc);
+
     }
 
     ?>
     </form>
-    <br/>
-    <button><a href="postsPage.php">view posts</a></button><br/>
     <hr/>
-<br/>
-<br/>
-<footer>Tomasz Nowak | Server-Side Web Development Project</footer>
-<br/>
-<br/>
+    <br/><br/>
+    <footer>Tomasz Nowak | Server-Side Web Development Project</footer>
+    <br/><br/>
 </body>
 
 </html>
