@@ -70,6 +70,8 @@ if((isset($_SESSION['logged']))&&($_SESSION['logged']==true))
 
     ?>
     </form>
+    <br/>
+    <button><a href="postsPage.php">view posts</a></button><br/>
     <hr/>
     <br/><br/>
     <footer>Tomasz Nowak | Server-Side Web Development Project</footer>
