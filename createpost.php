@@ -35,6 +35,33 @@ else
 		$theTitle = htmlentities($theTitle, ENT_QUOTES, "Utf-8");
 		$thePostcontent = htmlentities($thePostcontent, ENT_QUOTES, "Utf-8");
 
+		if(!(($theTitle == NULL) || (trim($theTitle) == "")||(($thePostcontent == NULL) || (trim($thePostcontent) == ""))))
+		{
+
+			$theUsername = $_SESSION['username'];
+			$date = date('Y-m-d H:i:s');
+
+			$dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
+
+			$q = "INSERT INTO posts (title, postcontent, style, userName, date) VALUES ('$theTitle','$thePostcontent','$theStyle','$theUsername','$date')";
+
+			$r = mysqli_query($dbc, $q);
+
+			if (!($r))
+			{
+				echo "Nothing came back from that query<br/> Something went wrong:" . mysqli_error($dbc) . "<br/>";
+			}
+			else
+			{
+				echo "Transaction was successful!\nPost published.";
+			}
+
+			mysqli_close($dbc);
+			unset($_SESSION['title']);
+			unset($_SESSION['postcontent']);
+			header('Location: createpost.php');
+		}
+
 	}
 	else
 	{
