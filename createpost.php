@@ -16,7 +16,7 @@ session_start();
 <body>
 <h1>"Adding new post"</h1>
 <br/>
-<h3>Create new post</h3><br/><br/>
+<h3>Create new post</h3>
 
 <?php
 if (!((isset($_SESSION['username']))&&(isset($_SESSION['password']))))
@@ -64,7 +64,7 @@ else
 		}
 		else
 		{
-			// the title or the content was dodgy repeat
+			// the title or the content was dodgy
 			echo "<form action=\"createpost.php\" method=\"POST\">";
 			echo "Title: <input name=\"title\" type=\"text\" required \"/><br/><br/>";
 			echo "Post content: <textarea name=\"postcontent\" type=\"text\" cols=\"50\" rows=\"12\" required \"></textarea><br/><br/>";
@@ -92,6 +92,7 @@ else
 		echo "Written by ".$_SESSION['username'].".<br/><br/>";
 		echo "<input type=\"submit\" value=\"Publish now\"/>";
 	}
+
 }
 
 ?>

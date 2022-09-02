@@ -33,7 +33,7 @@ if((isset($_SESSION['logged']))&&($_SESSION['logged']==true))
     }
     else
     {
-        // it does exist already. Some something has been sent to be processed
+        // it does exist already. Something has been sent to be processed
         $theUsername = $_POST['username'];
         $thePassword = $_POST['password'];
         $theUsername = htmlentities($theUsername, ENT_QUOTES, "Utf-8");
@@ -41,8 +41,7 @@ if((isset($_SESSION['logged']))&&($_SESSION['logged']==true))
 
         $dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
 
-
-        $q = "SELECT userName, pword FROM postsauthors WHERE userName = '$theUsername' AND pword = '$thePassword';";
+        $q = "SELECT userName, pword, acctyp FROM postsauthors WHERE userName = '$theUsername' AND pword = '$thePassword';";
 
         $r = mysqli_query($dbc, $q);
 
@@ -58,6 +57,10 @@ if((isset($_SESSION['logged']))&&($_SESSION['logged']==true))
         }
         else
         {
+            while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
+			{
+				$_SESSION['acc'] = $row[2];
+			}
             $_SESSION['username'] = $theUsername;
             $_SESSION['password'] = $thePassword;
             $_SESSION['logged'] = true;
@@ -73,9 +76,11 @@ if((isset($_SESSION['logged']))&&($_SESSION['logged']==true))
     <br/>
     <button><a href="postsPage.php">view posts</a></button><br/>
     <hr/>
-    <br/><br/>
-    <footer>Tomasz Nowak | Server-Side Web Development Project</footer>
-    <br/><br/>
+<br/>
+<br/>
+<footer>Tomasz Nowak | Server-Side Web Development Project</footer>
+<br/>
+<br/>
 </body>
 
 </html>
