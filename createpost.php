@@ -5,6 +5,7 @@ session_start();
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
+<title>Create new post</title>
 <meta charset="UTF-8" />
 <style>
     * {
@@ -37,7 +38,7 @@ else
 
 		if(!(($theTitle == NULL) || (trim($theTitle) == "")||(($thePostcontent == NULL) || (trim($thePostcontent) == ""))))
 		{
-
+			// we have all what we need, update DB
 			$theUsername = $_SESSION['username'];
 			$date = date('Y-m-d H:i:s');
 
@@ -61,7 +62,21 @@ else
 			unset($_SESSION['postcontent']);
 			header('Location: createpost.php');
 		}
-
+		else
+		{
+			// the title or the content was dodgy repeat
+			echo "<form action=\"createpost.php\" method=\"POST\">";
+			echo "Title: <input name=\"title\" type=\"text\" required \"/><br/><br/>";
+			echo "Post content: <textarea name=\"postcontent\" type=\"text\" cols=\"50\" rows=\"12\" required \"></textarea><br/><br/>";
+			echo "<input type=\"radio\" name=\"style\" value=\"maroon\">Maroon ";
+			echo "<input type=\"radio\" name=\"style\" value=\"navy\">Navy ";
+			echo "<input type=\"radio\" name=\"style\" value=\"darkgreen\">Green ";
+			echo "<input type=\"radio\" name=\"style\" value=\"purple\">Purple ";
+			echo "<input type=\"radio\" name=\"style\" value=\"brown\">Brown<br/><br/>";
+			echo "<span style=\"color:red\">\tTitle or post content missing!</span><br/>";
+			echo "Written by ".$_SESSION['username'].".<br/><br/>";
+			echo "<input type=\"submit\" value=\"Publish now\"/>";
+		}
 	}
 	else
 	{
