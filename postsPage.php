@@ -114,10 +114,9 @@ else
 
 		while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
 		{
-			echo "<table><tr><th>".$row[0]." </th></tr><tr><td>".$row[1]." </td></tr><tr><td>".$row[2]."</td></tr><tr><td>".$row[3]."</td></tr></table></br>";
+			echo "<table><tr><th><form action=\"post.php\" method=\"POST\"><input type=\"submit\" name=\"title\" value=\"".$row[0]."\"></input></form></th></tr><tr><td>".$row[1]." </td></tr><tr><td>".$row[2]."</td></tr><tr><td>".$row[3]."</td></tr></table></br>";
 		}
 		echo "<button><a href=\"postsPage.php\">Back</a></button><br/>";
-
 	}
 
 }
