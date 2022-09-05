@@ -24,11 +24,11 @@ td {
 
 <?php
 
+$dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
+
 if (!(isset($_POST['author'])))
 {
 	// the author was not selected from postspage.
-
-	$dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
 
 	$q = 'SELECT userName FROM postsauthors WHERE NOT acctyp  = "admin";';
 
@@ -52,6 +52,7 @@ if (!(isset($_POST['author'])))
 
 	mysqli_free_result ($r);
 
+	// load the posts
 	$q = 'SELECT title, postcontent, userName, date FROM posts ORDER BY date DESC;';
 
 	$r = mysqli_query($dbc, $q);
@@ -66,9 +67,8 @@ if (!(isset($_POST['author'])))
 
 		while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
 			{
-				echo "<table><tr><th>".$row[0]." </th></tr><tr><td>".$row[1]." </td></tr><tr><td><form action=\"author.php\" method=\"POST\"><input type=\"submit\" name=\"author\" value=\"".$row[2]."\"></input></form></td></tr><tr><td>".$row[3]."</td></tr></table></br>";
+				echo "<table><tr><th><form action=\"post.php\" method=\"POST\"><input type=\"submit\" name=\"title\" value=\"".$row[0]."\"></input></form></th></tr><tr><td>".$row[1]." </td></tr><tr><td><form action=\"author.php\" method=\"POST\"><input type=\"submit\" name=\"author\" value=\"".$row[2]."\"></input></form></td></tr><tr><td>".$row[3]."</td></tr></table></br>";
 			}
-
 	}
 
 }
@@ -116,6 +116,8 @@ else
 		{
 			echo "<table><tr><th>".$row[0]." </th></tr><tr><td>".$row[1]." </td></tr><tr><td>".$row[2]."</td></tr><tr><td>".$row[3]."</td></tr></table></br>";
 		}
+		echo "<button><a href=\"postsPage.php\">Back</a></button><br/>";
+
 	}
 
 }
