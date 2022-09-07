@@ -98,6 +98,10 @@ else
 ?>
 <hr/>
 <br/>
+<button><a href="deletepost.php">Delete old posts</a></button>
+<br/>
+<hr/>
+<br/>
 </form>
 <br/>
 <br/>
