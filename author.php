@@ -17,7 +17,7 @@
         <?php
         if (!(isset($_POST['author'])))
         {
-            // the author was not selected from postspage.
+            // the author was not selected from postspage go back.
             header('Location: postspage.php');
         }
         else
@@ -30,10 +30,12 @@
                 </figure>";
 
             echo "<form action=\"postsPage.php\" method=\"POST\">";
-			echo "<input type=\"submit\" name=\"author\" value=\"$theAuthor\"></input>";
+			echo "<input name=\"author\" value=\"$theAuthor\" hidden></input><input type=\"submit\" value=\"$theAuthor's Posts\"/></input>";
 			echo "</form>";
         }
         ?>
+    <br/>
+    <button><a href="postsPage.php">Back</a></button><br/>
     <hr/>
     <br/><br/>
     </main>
