@@ -18,6 +18,22 @@ session_start();
 
 <h3>Delete old post</h3><br/>
 
+<?php
+if (!((isset($_SESSION['username']))&&(isset($_SESSION['password']))))
+{
+	// User is not logged in go back to logging.php.
+	header('Location: logging.php');
+}
+else
+{
+    echo "<p>Welcome ".$_SESSION['acc']." ".$_SESSION['username'].'! [ <a href="logout.php">Logout!</a> ]</p>';
+
+    $theUsername = $_SESSION['username'];
+    $dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
+
+}
+
+?>
 <hr/>
 <br/>
 <button><a href="createpost.php">Create a new post</a></button><br/>
