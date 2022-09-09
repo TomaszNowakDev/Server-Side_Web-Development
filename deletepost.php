@@ -31,6 +31,29 @@ else
     $theUsername = $_SESSION['username'];
     $dbc = mysqli_connect ('localhost', 'root', '', 'project') OR die ("Something went wrong when I tried to connect to the database. There error message was :" . mysqli_connect_error());
 
+    if($_SESSION['acc'] == "admin")
+	{
+		$q = "SELECT title, date FROM posts ORDER BY date DESC;";
+
+		$r = mysqli_query($dbc, $q);
+
+		if (!($r))
+		{
+			echo "Nothing came back from that query<br/> Something went wrong:" . mysqli_error($dbc) . "<br/>";
+		}
+		else
+		{
+			echo"<hr/><h3>All posts</h3>";
+			while ($row = mysqli_fetch_array($r, MYSQLI_NUM))
+			{
+				echo "<table><tr><th>".$row[0]."</th><td>".$row[1]."</td><td><form action=\"delete.php\" method=\"POST\"><input name=\"delete\" value=\"".$row[0]."\" hidden></input><input type=\"submit\" value=\"Delete\"/></form></td></tr></table>";
+			}
+		}
+		mysqli_free_result ($r);
+
+		mysqli_close($dbc);
+
+	}
 }
 
 ?>
