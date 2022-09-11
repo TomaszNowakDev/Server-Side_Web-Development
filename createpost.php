@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE HTML>
 <html lang = "en">
 <head>
-<title>Create new post</title>
+<title>Blogs</title>
 <meta charset="UTF-8" />
 <style>
     * {
@@ -16,7 +16,7 @@ session_start();
 <body>
 <h1>"Adding new post"</h1>
 <br/>
-<h3>Create new post</h3>
+<h3>Create new post</h3><br/><br/>
 
 <?php
 if (!((isset($_SESSION['username']))&&(isset($_SESSION['password']))))
