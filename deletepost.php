@@ -16,7 +16,7 @@ session_start();
 <body>
 <h1>"Delete posts"</h1>
 
-<h3>Delete old post</h3><br/>
+<h3>Delete old post</h3>
 
 <?php
 if (!((isset($_SESSION['username']))&&(isset($_SESSION['password']))))

@@ -15,8 +15,7 @@ session_start();
 </head>
 <body>
 <h1>"Adding new post"</h1>
-<br/>
-<h3>Create new post</h3><br/><br/>
+<h3>Create new post</h3>
 
 <?php
 if (!((isset($_SESSION['username']))&&(isset($_SESSION['password']))))
